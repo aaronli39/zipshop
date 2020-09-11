@@ -1,7 +1,7 @@
-import React from 'react'
-import "../Header.css"
-import logo from "../zipshopIcon.png"
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import logo from "../zipshopIcon.png";
+import { Search, ShoppingCart } from "@material-ui/icons";
+import "../styles/Header.css";
 
 const Header = () => {
 	return (
@@ -11,7 +11,7 @@ const Header = () => {
 			<div className="headerSearch">
 				<input className="headerSearchInput" type="text" />
 				{/* Logo */}
-				<SearchIcon className="headerSearchIcon" />
+				<Search className="headerSearchIcon" />
 			</div>
 
 			<div className="headerNav">
@@ -29,10 +29,13 @@ const Header = () => {
 					<span className="headerOptionLineOne">Your</span>
 					<span className="headerOptionLineTwo">Prime</span>
 				</div>
+				<div className="headerOptionBasket">
+					<ShoppingCart />
+					<span className="headerOptionTwo headerBasketCount">0</span>
+				</div>
 			</div>
-
 		</div>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;
