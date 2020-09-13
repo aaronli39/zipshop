@@ -55,7 +55,7 @@ const Home = () => {
 
 				<div className="homeRow">
 					<Product
-						id="90829332"
+						id="9082931"
 						title="Samsung LC49RG90SSUXEN 49' Curved LED Gaming Monitor - Super Ultra Wide Dual WQHD 5120 x 1440"
 						price={1094.98}
 						rating={4}

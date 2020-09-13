@@ -7,7 +7,7 @@ import Checkout from "./components/Checkout";
 const App = () => {
 	return (
 		<Router>
-			<div class="app">
+			<div className="app">
 				<Header />
 				<Switch>
 					<Route path="/checkout">
