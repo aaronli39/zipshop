@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../zipshopIcon.png";
+import logo from "../zipshop.png";
 import { Search, ShoppingCart } from "@material-ui/icons";
 import "../styles/Header.css";
 import { Link } from "react-router-dom";
