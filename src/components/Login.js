@@ -1,22 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../styles/Login.css";
 import logo from "../zipshop.png";
+import { auth } from "../firebase";
 
 const Login = () => {
+	const history = useHistory();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const signIn = (e) => {
 		e.preventDefault();
 
-		// some fancy firebase login stuff
+		auth
+			.signInWithEmailAndPassword(email, password)
+			.then((auth) => {
+				history.push("/");
+			})
+			.catch((error) => alert(error.message));
 	};
 
 	const register = (e) => {
 		e.preventDefault();
 
-		// do some fancy firebase register stuff
+		auth
+			.createUserWithEmailAndPassword(email, password)
+			.then((auth) => {
+				// on successful creation of user
+				console.log(auth);
+				if (auth) history.push("/");
+			})
+			.catch((error) => alert(error.message));
 	};
 	return (
 		<div className="login">
