@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Checkout.css";
 import CheckoutProduct from "./CheckoutProduct";
 import { useStateValue } from "./StateProvider";
@@ -6,6 +6,9 @@ import Subtotal from "./Subtotal";
 
 const Checkout = () => {
 	const [{ basket, user }, dispatch] = useStateValue();
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<div className="checkout">
@@ -17,7 +20,7 @@ const Checkout = () => {
 				/>
 
 				<div>
-					<h3>{user?.email}</h3>
+					<h3>Hello, {user?.email ? user.email : "Guest"}</h3>
 					<h2 className="checkoutTitle">Your Shopping Basket</h2>
 					{basket.map((item) => (
 						<CheckoutProduct

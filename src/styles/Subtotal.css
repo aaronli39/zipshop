@@ -19,7 +19,7 @@
 	margin-right: 5px;
 }
 
-.subtotal > button {
+.subtotalButton {
 	background: tomato;
 	border-radius: 2px;
 	width: 100%;
