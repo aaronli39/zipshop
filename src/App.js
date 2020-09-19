@@ -7,12 +7,13 @@ import Login from "./components/Login";
 import { auth } from "./firebase";
 import { useStateValue } from "./components/StateProvider";
 import Payment from "./components/Payment";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const App = () => {
 	const [{}, dispatch] = useStateValue();
 	useEffect(() => {
 		auth.onAuthStateChanged((authUser) => {
-			console.log("USER IS: ", authUser);
 			if (authUser) {
 				dispatch({
 					type: "SET_USER",
@@ -34,17 +35,14 @@ const App = () => {
 					<Route path="/login">
 						<Login />
 					</Route>
-
 					<Route path="/checkout">
 						<Header />
 						<Checkout />
 					</Route>
-
 					<Route path="/payment">
 						<Header />
 						<Payment />
 					</Route>
-
 					<Route path="/">
 						<Header />
 						<Home />
