@@ -1,6 +1,6 @@
 For best experience, please view this project on desktop, the app was not optimized for mobile viewports.
 
-# Zipshop (link (here)[https://zipshop-fbf07.web.app/]
+# Zipshop (link [here](https://zipshop-fbf07.web.app/)
 This is an Amazon themed e-commerce site with a few static products. The purpose of this project was for me to learn React, React Contexts API, React Hooks, Firebase Auth, Firestore, and Cloud Functions.
 
 -----
