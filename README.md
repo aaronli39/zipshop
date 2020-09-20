@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please view this project on desktop, the website is not very mobile friendly.
 
 # Zipshop
 This will be an Amazon API powered and Amazon themed e-commerce app for me to learn about React, state management, and Firebase
