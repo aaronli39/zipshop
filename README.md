@@ -1,4 +1,4 @@
-Please view this project on desktop, the website is not very mobile friendly.
+For best experience, please view this project on desktop, the app was not optimized for mobile viewports.
 
 # Zipshop
 This will be an Amazon API powered and Amazon themed e-commerce app for me to learn about React, state management, and Firebase
