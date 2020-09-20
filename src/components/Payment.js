@@ -1,11 +1,13 @@
 import { useElements, useStripe, CardElement } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import Axios from "../axios";
+import React, { useEffect, useState } from "react";
 import CurrencyFormat from "react-currency-format";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../styles/Payment.css";
 import CheckoutProduct from "./CheckoutProduct";
 import { getBasketSubtotal } from "./reducer";
 import { useStateValue } from "./StateProvider";
+import { db } from "../firebase";
 
 const Payment = () => {
 	// data layer
@@ -20,6 +22,26 @@ const Payment = () => {
 	const [disabled, setDisabled] = useState(true);
 	const [succeeded, setSucceeded] = useState(false);
 	const [processing, setProcessing] = useState("");
+	const [clientSecret, setClientSecret] = useState(true);
+
+	const history = useHistory();
+
+	useEffect(() => {
+		// generate Stripe client secret to charge customer
+		const getClientSecret = async () => {
+			const response = await Axios({
+				method: "post",
+				// stripe expects the tottal in a currencies subunits (1 dollar is 100 cents)
+				url: `/payments/create?total=${getBasketSubtotal(basket) * 100}`,
+			});
+
+			setClientSecret(response.data.clientSecret);
+		};
+
+		getClientSecret();
+	}, [basket]);
+
+	console.log("THE SECRET IS: ", clientSecret);
 
 	// funcs
 	const handleSubmit = async (e) => {
@@ -27,13 +49,43 @@ const Payment = () => {
 		e.preventDefault();
 		setProcessing(true);
 
-		const payload = await stripe;
+		const payload = await stripe
+			.confirmCardPayment(clientSecret, {
+				payment_method: {
+					card: elements.getElement(CardElement),
+				},
+			})
+			.then(({ paymentIntent }) => {
+				// paymentIntent is like a confirmation
+
+				db.collection("users")
+					.doc(user?.uid)
+					.collection("orders")
+					.doc(paymentIntent.id)
+					.set({
+						basket: basket,
+						amount: paymentIntent.amount,
+						created: paymentIntent.created,
+					});
+				setSucceeded(true);
+				setError(null);
+				setProcessing(false);
+
+				dispatch({
+					type: "EMPTY_BASKET",
+				});
+
+				// we want to replace so that users can press backwards
+				// and end up on that payment page again
+				history.replace("/orders");
+			});
 	};
 
 	const handleChange = (e) => {
 		setDisabled(e.empty);
 		setError(e.error ? e.error.message : "");
 	};
+
 	return (
 		<div className="payment">
 			<div className="paymentContainer">
@@ -66,6 +118,7 @@ const Payment = () => {
 								image={ele.image}
 								price={ele.price}
 								rating={ele.rating}
+								// key={ind}
 							/>
 						))}
 					</div>

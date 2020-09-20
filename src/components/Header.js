@@ -27,7 +27,7 @@ const Header = () => {
 			</div>
 
 			<div className="headerNav">
-				<Link to={!user && "/login"}>
+				<Link to={user ? "/" : "/login"}>
 					<div onClick={handleAuthentication} className="headerOption">
 						<span className="headerOptionLineOne">
 							Hello, {user?.email ? user.email : "Guest"}
@@ -38,10 +38,12 @@ const Header = () => {
 					</div>
 				</Link>
 
-				<div className="headerOption">
-					<span className="headerOptionLineOne">Returns</span>
-					<span className="headerOptionLineTwo">& Orders</span>
-				</div>
+				<Link to="/orders">
+					<div className="headerOption">
+						<span className="headerOptionLineOne">Returns</span>
+						<span className="headerOptionLineTwo">& Orders</span>
+					</div>
+				</Link>
 
 				<div className="headerOption">
 					<span className="headerOptionLineOne">Your</span>
