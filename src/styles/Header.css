@@ -1,5 +1,5 @@
 .header {
-	height: 60px;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	background-color: #131921;
@@ -36,23 +36,27 @@
 }
 
 .headerOptionLineOne {
-	font-size: 10px;
+	font-size: 12px;
 }
 
 .headerOptionLineTwo {
-	font-size: 13px;
+	font-size: 15px;
 	font-weight: 800;
 }
 
 .headerOptionBasket {
 	display: flex;
-	align-items: center;
 	color: white;
 }
 
+.headerOptionBasketContainer {
+	display: flex;
+	align-items: center;
+}
+
 .headerBasketCount {
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 8px;
+	margin-right: 8px;
 }
 
 .headerNav {

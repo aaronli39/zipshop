@@ -11,6 +11,12 @@
 	z-index: 1;
 	margin-left: 5px;
 	margin-right: 5px;
+	@media only screen and (max-width: 600px) {
+		.homeRow {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
 }
 
 .homeImage {

@@ -28,13 +28,19 @@ const Orders = () => {
 
 	return (
 		<div className="orders">
-			<h1>Your Orders</h1>
+			{user ? (
+				<>
+					<h1>Your Orders</h1>
 
-			<div className="ordersOrder">
-				{orders?.map((order) => (
-					<Order order={order} />
-				))}
-			</div>
+					<div className="ordersOrder">
+						{orders?.map((order) => (
+							<Order order={order} />
+						))}
+					</div>
+				</>
+			) : (
+				<h2>You must be logged in to view your orders!</h2>
+			)}
 		</div>
 	);
 };

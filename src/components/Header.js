@@ -45,18 +45,20 @@ const Header = () => {
 					</div>
 				</Link>
 
-				<div className="headerOption">
+				{/* <div className="headerOption">
 					<span className="headerOptionLineOne">Your</span>
 					<span className="headerOptionLineTwo">Prime</span>
+				</div> */}
+				<div className="headerOptionBasketContainer">
+					<Link to="/checkout">
+						<div className="headerOptionBasket">
+							<ShoppingCart />
+							<span className="headerOptionTwo headerBasketCount">
+								{basket?.length}
+							</span>
+						</div>
+					</Link>
 				</div>
-				<Link to="/checkout">
-					<div className="headerOptionBasket">
-						<ShoppingCart />
-						<span className="headerOptionTwo headerBasketCount">
-							{basket?.length}
-						</span>
-					</div>
-				</Link>
 			</div>
 		</div>
 	);
